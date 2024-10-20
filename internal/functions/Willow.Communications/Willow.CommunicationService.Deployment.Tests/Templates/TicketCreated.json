@@ -1,0 +1,15 @@
+﻿{
+  "CorrelationId": "",
+  "CustomerId": "",
+  "UserId": "",
+  "UserType": "Customer",
+  "CommunicationType": "email",
+  "Locale": "",
+  "TemplateName": "TicketCreated",
+  "Data": {
+    "TicketSequenceNumber": "100M-T-3",
+    "TicketSummary": "This is a new ticket summary.",
+    "TicketUrl": "https://no.where.com",
+    "SiteName": "Willow Test Site"
+  }
+}

@@ -1,0 +1,44 @@
+﻿trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- name: solutionLocation
+  value: 'infrastructure/deployment/Willow.RealEstate.Deployment'
+- name: buildConfiguration
+  value: 'Release'
+- name: artifactName
+  value: 'drop.deployment'
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - task: UseDotNet@2
+      displayName: Use .NET 6.0
+      inputs:
+        packageType: 'sdk'
+        version: '6.0.x'
+
+    - task: NuGetToolInstaller@1
+
+    - task: NuGetCommand@2
+      inputs:
+        command: 'restore'
+        restoreSolution: $(solutionLocation)/*.csproj
+        feedsToUse: 'select'
+      displayName: '[NuGet] restore $(solutionLocation)'
+
+    - script: |
+        dotnet build $(solutionLocation) --configuration $(buildConfiguration) --no-restore
+      displayName: '[dotnet] Build: $(solutionLocation)'
+
+    - script: |
+        dotnet publish $(solutionLocation) -o $(Build.ArtifactStagingDirectory) --configuration $(buildConfiguration) --no-self-contained --no-build
+      displayName: '[dotnet] Publish: $(solutionLocation)'
+
+    - publish: '$(Build.ArtifactStagingDirectory)'
+      artifact: $(artifactName)
+      displayName: '[AzDo] Publish deployment artifact'

@@ -1,0 +1,419 @@
+[
+    {
+        "Name": "Waterman Clark",
+        "Code": "wmc",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "WatermanClark-PRD",
+            "PrincipalName": "256b68a7-ff5b-4d8b-aa07-2852bc5af419",
+            "Identities": [
+                {
+                    "PrincipalId": "9940361c-a793-478b-94c7-e4ab89b8dbbd",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "wmc-prod-default-identity-7672f29a",
+                    "Role": "Admin"
+                }
+            ]
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "9940361c-a793-478b-94c7-e4ab89b8dbbd",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "wmc-prod-default-identity-7672f29a",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "Brookfield",
+        "Code": "brf",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "Brookfield-PRD",
+            "PrincipalName": "b4cda134-8081-4021-b754-a729e37565a3",
+            "Identities": [
+                {
+                    "PrincipalId": "12cbc438-ba55-4e22-9588-5096b6e20e95",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "brf-prod-identity-5ce7afd5",
+                    "Role": "Admin"
+                }
+            ]
+        },
+        "Adt": {
+            "Name": "adt2",
+            "Identities": [
+                {
+                    "PrincipalId": "12cbc438-ba55-4e22-9588-5096b6e20e95",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "brf-prod-identity-5ce7afd5",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "Dallas Fort Worth Airport",
+        "Code": "dfw",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "DallasFortWorthAirport-PRD",
+            "PrincipalName": "ad736445-5269-49be-b281-5421d1efa090",
+            "Identities": [
+                {
+                    "PrincipalId": "297977c5-6aac-448a-8509-f257c431d1c0",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "dfw-prod-identity-e7314976",
+                    "Role": "Admin"
+                }
+            ]
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "297977c5-6aac-448a-8509-f257c431d1c0",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "dfw-prod-identity-e7314976",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "Durst",
+        "Code": "durst",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "Durst-PRD",
+            "PrincipalName": "f704e3e6-75e3-4ba2-9a33-0858da4c0ab5"
+        }
+    },
+    {
+        "Name": "JP Morgan Chase",
+        "Code": "jpmc",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "JPMorganChase-PRD",
+            "PrincipalName": "a3f1698a-ee45-4617-8e47-25729775a7b0"
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "ccb1e8d7-4b2e-4101-90e4-68366ef12ca4",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "jpmc-prod-default-identity-cab756a5",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "Microsoft East Campus",
+        "Code": "mcm",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "MicrosoftEastCampus-PRD",
+            "PrincipalName": "92e9c9fd-f75a-4c48-b0de-728cf0dee058"
+        }
+    },
+    {
+        "Name": "Microsoft",
+        "Code": "msft",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "Microsoft-PRD",
+            "PrincipalName": "2b261689-bdc9-4818-89e4-2d8d5428219a",
+            "Identities": [
+                {
+                    "PrincipalId": "4c3e9db7-d123-4ef4-a988-8cefd60f65ad",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "msft-prod-identity-d75af04b",
+                    "Role": "Admin"
+                }
+            ]
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "4c3e9db7-d123-4ef4-a988-8cefd60f65ad",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "msft-prod-identity-d75af04b",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "Willow",
+        "Code": "wlo",
+        "Region": "aue2",
+        "Adx": {
+            "Database": "Willow-PRD",
+            "PrincipalName": "3418584b-aa7c-4740-ac48-4760810104d4"
+        }
+    },
+    {
+        "Name": "Macquarie",
+        "Code": "mmp",
+        "Region": "aue2",
+        "Adx": {
+            "Database": "Macquarie-PRD",
+            "PrincipalName": "10aa5797-8e1d-46f1-a232-cbcf4f54122e"
+        }
+    },
+    {
+        "Name": "Investa",
+        "Code": "inv",
+        "Region": "aue2",
+        "Adx": {
+            "Database": "Investa-PRD",
+            "PrincipalName": "8b8eaacf-67ec-4521-ad43-26ec8f10f9f7",
+            "Identities": [
+                {
+                    "PrincipalId": "653c7109-4a36-4287-a49a-84af34fe36db",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "inv-prod-identity-8e17f564",
+                    "Role": "Admin"
+                }
+            ]
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "653c7109-4a36-4287-a49a-84af34fe36db",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "inv-prod-identity-8e17f564",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "Western Sydney Airport",
+        "Code": "wsa",
+        "Region": "aue2"
+    },
+    {
+        "Name": "Melbourne Metro",
+        "Code": "met",
+        "Region": "aue2",
+        "Adx": {
+            "Database": "MelbourneMetro-PRD",
+            "Identities": [
+                {
+                    "PrincipalId": "a42ba4bd-5877-40e7-8408-aa083fa7d41a",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "met-prod-default-identity-d1328b57",
+                    "Role": "Admin"
+                }
+            ]
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "a42ba4bd-5877-40e7-8408-aa083fa7d41a",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "met-prod-default-identity-d1328b57",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "AXA",
+        "Code": "axa",
+        "Region": "weu2",
+        "Adx": {
+            "Database": "AXA-PRD",
+            "PrincipalName": "e6e9326a-7cce-4907-b8ee-6a9ae3118c4b",
+            "Identities": [
+                {
+                    "PrincipalId": "81fb5066-75a4-4d81-9244-9df9263fd262",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "axa-prod-identity-38e4ed79",
+                    "Role": "Admin"
+                }
+            ]
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "81fb5066-75a4-4d81-9244-9df9263fd262",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "axa-prod-identity-38e4ed79",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "22 Bishopsgate",
+        "Code": "bg22",
+        "Region": "weu2",
+        "Adx": {
+            "Database": "22Bishopsgate-PRD"
+        }
+    },
+    {
+        "Name": "Hollywood Park",
+        "Code": "sofi",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "HollywoodPark-PRD",
+            "Identities": [
+                {
+                    "PrincipalId": "6c1fa15d-ac11-415c-9165-65bef0b92735",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "hpk-prod-default-identity-195a5c33",
+                    "Role": "Admin"
+                }
+            ]
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "6c1fa15d-ac11-415c-9165-65bef0b92735",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "hpk-prod-default-identity-195a5c33",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "BP",
+        "Code": "bp",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "BP-PRD"
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "bc7aa10e-b2fe-4b81-a01c-822aca43734c",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "bp-prod-default-identity-6c99d482",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "DDK Investments",
+        "Code": "ddk",
+        "Region": "aue2",
+        "Adx": {
+            "Database": "DDK-Investments-PRD",
+            "Identities": [
+                {
+                    "PrincipalId": "0f264aac-7bc1-4506-8cea-d68344e2a0b2",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "ddk-prod-default-identity-15a15b3c",
+                    "Role": "Admin"
+                }
+            ]
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "0f264aac-7bc1-4506-8cea-d68344e2a0b2",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "ddk-prod-default-identity-15a15b3c",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "Worksphere",
+        "Code": "skws",
+        "Region": "weu2",
+        "Adx": {
+            "Database": "Worksphere-PRD"
+        }
+    },
+    {
+        "Name": "Google",
+        "Code": "goog",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "Google-PRD"
+        }
+    },
+    {
+        "Name": "Parson",
+        "Code": "pars",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "Parson-PRD"
+        }
+    },
+    {
+        "Name": "Walmart",
+        "Code": "wmt",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "Walmart-PRD",
+            "Identities": [
+                {
+                    "PrincipalId": "d279aa74-4a28-4727-8305-25ada8e2db26",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "wmt-prod-default-identity-47ba9b4a",
+                    "Role": "Admin"
+                }
+            ]
+        },
+        "Adt": {
+            "Identities": [
+                {
+                    "PrincipalId": "d279aa74-4a28-4727-8305-25ada8e2db26",
+                    "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+                    "Name": "wmt-prod-default-identity-47ba9b4a",
+                    "Role": "owner"
+                }
+            ]
+        }
+    },
+    {
+        "Name": "Medxcel",
+        "Code": "mxl",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "Medxcel-PRD"
+        }
+    },
+    {
+        "Name": "Sanofi",
+        "Code": "snf",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "Sanofi-PRD"
+        }
+    },
+    {
+        "Name": "Nuveen",
+        "Code": "nvn",
+        "Region": "weu2",
+        "Adx": {
+            "Database": "Nuveen-PRD"
+        }
+    },
+    {
+        "Name": "Turner",
+        "Code": "trn",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "Turner-PRD"
+        }
+    },
+    {
+        "Name": "Walmart Retail",
+        "Code": "wmr",
+        "Region": "eu22",
+        "Adx": {
+            "Database": "WalmartRetail-PRD"
+        }
+    }
+]

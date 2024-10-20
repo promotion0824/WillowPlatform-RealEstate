@@ -1,0 +1,16 @@
+parameters:
+  - name: downloadPath
+    type: string
+    default: $(System.ArtifactsDirectory)
+  - name: dropName
+    type: string
+    default: pulumi
+steps:
+  - task: DownloadBuildArtifacts@0
+    inputs:
+      artifactName: pulumi
+      downloadPath: ${{ parameters.downloadPath }}
+  - template: extractArtifact.yml
+    parameters:
+      downloadPath: ${{ parameters.downloadPath }}
+      dropName: ${{ parameters.dropName }}

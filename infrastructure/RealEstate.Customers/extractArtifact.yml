@@ -1,0 +1,13 @@
+parameters:
+  - name: downloadPath
+    type: string
+    default: $(System.ArtifactsDirectory)
+  - name: dropName
+    type: string
+    default: pulumi
+steps:
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: ${{ parameters.downloadPath }}/${{ parameters.dropName }}/*.zip
+      destinationFolder: $(System.ArtifactsDirectory)/${{ parameters.dropName }}
+      cleanDestinationFolder: false

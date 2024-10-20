@@ -1,0 +1,17 @@
+﻿{
+  "CorrelationId": "",
+  "CustomerId": "",
+  "UserId": "",
+  "UserType": "Customer",
+  "CommunicationType": "email",
+  "Locale": "",
+  "TemplateName": "InspectionSummary",
+  "Data": {
+    "InspectionDate": "04/03/2022",
+    "CompletedChecks": "Completed checks performed",
+    "OverdueChecks": "Overdue checks performed",
+    "UnhealthyChecks": "Unhealthy checks performed",
+    "InspectionUrl": "https://no.where.com",
+    "SiteName": "Daily Checks Site"
+  }
+}

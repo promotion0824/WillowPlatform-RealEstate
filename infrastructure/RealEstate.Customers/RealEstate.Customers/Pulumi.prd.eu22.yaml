@@ -1,0 +1,18 @@
+secretsprovider: azurekeyvault://PlatformprdDeployKeys.vault.azure.net/keys/pulumi
+encryptedkey: MUloZmNfRDhEVnRlV1RjXzU5TFF5VHZDeFZ2TmFNc2ZDZlJ2ejB1YWZRdTZ1TXVrZ1Qyc1JOaFJlN0U4X1ZwVlVFZEhYU1BXYjJXMjl6ODFoSWVpYzZrLXhETlM4NWpDSXAwemhOb3hvNXM3MEdaM3RFQTU4RWlqZV9aOEc0R3dSVWJhVmd4MVAzQWlHWHlnX3FwOFRwUjVYRVBCWXRrSHo1NW1pOE81Nmdkd3gwNTdxcmV1LUJ5dzVMMXdJYlJhLVIxNW1EUVlmUVFaaThEd2dJTHdUZHF0bEEtX25mYjYxUEN2MTkyWjJ1YmtNY3BlSkFzVkZVcXNyMzdXSXF1cnZ0c0ZSRjJzb2dVdXNBcjVRdENlM2NEVDVNN0JKYnplUUZLenFJN1I3NFlYeWxKVWNuM0tVS1BZcWc3T0NydGZ6aGFpRG1ILWhUaklWNjVILVBWdEpR
+config:
+  RealEstate.Customers:Adx:
+    Cluster: wilprodeu2adx
+    Location: East US 2
+    ResourceGroup: prod-platformdata-eu2
+    SubscriptionId: d4746c7a-19cb-47ac-82b5-069b17cb99de
+  RealEstate.Customers:Adt:
+    SubscriptionId: e878a98a-20ec-4516-a59d-f393429fe07c
+  RealEstate.Customers:DigitalTwinCore:
+    Name: wil-prd-plt-eu22-digitaltwincore
+    ResourceGroup: t3-wil-prd-plt-eu22-app-rsg
+  RealEstate.Customers:environment: prd
+  RealEstate.Customers:region: eu22
+  RealEstate.Customers:tier: "3"
+  RealEstate.Customers:zone: "2"
+  azure-native:location: eastus2

@@ -1,0 +1,13 @@
+﻿{
+  "CorrelationId": "",
+  "CustomerId": "",
+  "UserId": "",
+  "UserType": "Customer",
+  "CommunicationType": "email",
+  "Locale": "",
+  "TemplateName": "ContactRequest",
+  "Data": {
+    "AppName": "Willow RE",
+    "SiteOrPortfolio":  "Willow North America"
+  }
+}

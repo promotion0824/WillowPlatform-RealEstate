@@ -1,0 +1,13 @@
+﻿{
+  "CorrelationId": "",
+  "CustomerId": "",
+  "UserId": "",
+  "UserType": "Customer",
+  "CommunicationType": "email",
+  "Locale": "",
+  "TemplateName": "InitializeUser",
+  "Data": {
+    "CustomerName": "Willow Test Customer",
+    "UserInitializationUrl": "https://no.where.com"
+  }
+}

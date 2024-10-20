@@ -1,0 +1,11 @@
+encryptionsalt: v1:IvPnAWASSzM=:v1:rqdEn7b5FwIvQic3:EhwB001v4m4twUbZphIzyh9uwrLeYg==
+config:
+  RealEstate.Customers:Adx:
+    Cluster: wilnonprodaueadx
+    Location: Australia East
+    ResourceGroup: nonprod-platformdata
+  RealEstate.Customers:environment: sbx
+  RealEstate.Customers:region: aue1
+  RealEstate.Customers:tier: "3"
+  RealEstate.Customers:zone: "1"
+  azure-native:location: australiaeast

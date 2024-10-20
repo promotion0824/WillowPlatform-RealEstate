@@ -1,0 +1,18 @@
+secretsprovider: azurekeyvault://PlatformdevDeployKeys.vault.azure.net/keys/pulumi
+encryptedkey: a1hTNkZuVjY2Z0FkU0k1OHozUVJOWElJY1lQR0tjRUEzOWd6TGF2b2h2dy11aXlPTjR1QjFuLUl5RnNYeUh5UUE1VF9Dc3VDUHctX1VSTExoMkgtRWo4NXpsenk2REN6TWpUZGFDQkJtTW5zUGxadzVWOTc4VElHQlBUM19OZmMyeDlIUG9wcmtYeUh4Tnc3bkI4RUtyVkQwRTJrQ01HZHZTM3BWRHpDWlpOb2dEbTlfM3VsS2JNekJQeGZ1eUtudzFLdEtEUWlBLUZoYVhVQlBVOHlWMThPcTNKQ3VoRlZVTHAtMFNwUGFBNk9HUWdLUlEyeXd2VHAxb1JTR3RNYzcwR2xoWFNYUUljbmVrTVByYm15bnhQb084ZXZmRmh6X3F5NHkyRWxTM3IyaFhybUlrX1VfeFd1Y1lRcVZwaVpiLXNSMEUzbFdORjRfaXhtM25DWWh3
+config:
+  RealEstate.Customers:Adx:
+    Cluster: wilnonprodaueadx
+    Location: Australia East
+    ResourceGroup: nonprod-platformdata
+    SubscriptionId: 178b67d7-b6fd-46db-b4a3-b57f8a6b045f
+  RealEstate.Customers:Adt:
+    SubscriptionId: 0be01d84-8432-4558-9aba-ecd204a3ee61
+  RealEstate.Customers:DigitalTwinCore:
+    Name: wil-dev-plt-eu21-digitaltwincore
+    ResourceGroup: t3-wil-dev-plt-eu21-app-rsg
+  RealEstate.Customers:environment: dev
+  RealEstate.Customers:region: eu21
+  RealEstate.Customers:tier: "3"
+  RealEstate.Customers:zone: "1"
+  azure-native:location: eastus2

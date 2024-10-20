@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Willow.Common" Version="1.1.2" />
+    <PackageReference Include="Willow.Data" Version="1.0.2" />
+    <PackageReference Include="Willow.Logging" Version="1.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\common\Models\Willow.Platform.Models.Customer\Willow.Platform.Models.Customer.csproj" />
+    <ProjectReference Include="..\..\..\..\common\Models\Willow.Platform.Models.User\Willow.Platform.Models.User.csproj" />
+    <ProjectReference Include="..\..\..\..\common\Willow.Platform.Common\Willow.Platform.Common.csproj" />
+  </ItemGroup>
+
+</Project>

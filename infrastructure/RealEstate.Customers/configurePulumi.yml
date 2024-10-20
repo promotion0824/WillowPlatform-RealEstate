@@ -1,0 +1,8 @@
+parameters:
+  - name: pulumiPlugin
+    type: string
+
+steps:
+  - pwsh: |
+        pulumi plugin install resource ${{ parameters.pulumiPlugin }} 
+    displayName: Pulumi plugin install ${{ parameters.pulumiPlugin }}

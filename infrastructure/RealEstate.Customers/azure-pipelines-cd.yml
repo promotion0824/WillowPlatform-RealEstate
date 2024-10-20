@@ -1,0 +1,98 @@
+name: RealEstateCustomersCD
+
+trigger: none
+
+variables:
+  vmImage: ubuntu-latest
+  dropName: pulumi
+
+resources:
+  pipelines:
+  - pipeline: artifact
+    source: RealEstateCustomersCI
+    trigger:
+      branches:
+        include:
+          - main
+
+stages:
+  - stage: Development
+    jobs:
+      - deployment: DeployDev
+        displayName: Deploy Dev
+        pool:
+          vmImage: $(vmImage)
+        environment: dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: extractArtifact.yml
+                  parameters:
+                    dropName: $(dropName)
+                    downloadPath: $(PIPELINE.WORKSPACE)/artifact
+
+                - template: configurePulumi.yml
+                  parameters:
+                    pulumiPlugin: 'azure-native'
+
+                - template: azure-pipelines-pulumi.yml
+                  parameters:
+                    azureSubscription: az-platform-dev-WillowPlatform
+                    env: dev
+                    dropName: $(dropName)
+                    command: up
+
+  - stage: UAT
+    jobs:
+      - deployment: DeployUat
+        displayName: Deploy Uat
+        pool:
+          vmImage: $(vmImage)
+        environment: uat
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: extractArtifact.yml
+                  parameters:
+                    dropName: $(dropName)
+                    downloadPath: $(PIPELINE.WORKSPACE)/artifact
+
+                - template: configurePulumi.yml
+                  parameters:
+                    pulumiPlugin: 'azure-native'
+
+                - template: azure-pipelines-pulumi.yml
+                  parameters:
+                    azureSubscription: az-platform-uat-WillowPlatform
+                    env: uat
+                    dropName: $(dropName)
+                    command: up
+
+  - stage: Production
+    jobs:
+      - deployment: DeployPrd
+        displayName: Deploy Prd
+        pool:
+          vmImage: $(vmImage)
+        environment: prd
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: extractArtifact.yml
+                  parameters:
+                    dropName: $(dropName)
+                    downloadPath: $(PIPELINE.WORKSPACE)/artifact
+
+                - template: configurePulumi.yml
+                  parameters:
+                    pulumiPlugin: 'azure-native'
+
+                - template: azure-pipelines-pulumi.yml
+                  parameters:
+                    azureSubscription: az-platform-prd-WillowPlatform
+                    env: prd
+                    dropName: $(dropName)
+                    command: up

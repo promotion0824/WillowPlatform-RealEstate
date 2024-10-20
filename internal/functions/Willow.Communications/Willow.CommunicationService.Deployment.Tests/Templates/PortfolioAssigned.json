@@ -1,0 +1,12 @@
+﻿{
+  "CorrelationId": "",
+  "CustomerId": "",
+  "UserId": "",
+  "UserType": "Customer",
+  "CommunicationType": "email",
+  "Locale": "",
+  "TemplateName": "PortfolioAssigned",
+  "Data": {
+    "PortfolioName": "WillowTest"
+  }
+}

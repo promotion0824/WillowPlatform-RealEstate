@@ -1,0 +1,65 @@
+﻿parameters:
+- name: location
+  default: 
+    infrastructure/deployment/Willow.RealEstate.Deployment
+
+- name: plugins
+  type: object
+  default:
+  - name: azure-native
+    version: v1.53.0
+  - name: random
+    version: v4.3.1
+  - name: tls
+    version: v4.1.0
+
+- name: environment
+- name: regionCode
+- name: command
+- name: serviceConnection
+- name: pulumi_stateStorageAccount
+- name: pulumi_secretsProvider
+- name: pulumi_cloudUrl
+
+steps: 
+- task: UseDotNet@2
+  displayName: Use .NET 6.0
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
+
+- task: Pulumi@1
+  displayName: Update pulumi version
+
+- ${{ each plugin in parameters.plugins }}:
+    - script: |
+        pulumi plugin install resource ${{ plugin.name }} ${{ plugin.version }}
+      displayName: 'Install plugin: ${{ plugin.name }}'
+
+- task: AzureCLI@2
+  displayName: pulumi ${{ parameters.command }}
+  inputs:
+    azureSubscription: ${{ parameters.serviceConnection }}
+    addSpnToEnvironment: true
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      $env:ARM_CLIENT_ID=$env:servicePrincipalId
+      $env:ARM_CLIENT_SECRET=$env:servicePrincipalKey
+      $env:ARM_TENANT_ID=$env:tenantId
+      $env:SERVICE_CONNECTION="${{ parameters.serviceConnection }}"
+      $env:ARM_SUBSCRIPTION_ID=$(az account show --query "id" -o tsv)
+      $env:AZURE_STORAGE_ACCOUNT="${{ parameters.pulumi_stateStorageAccount }}"
+      $env:AZURE_STORAGE_SAS_TOKEN= $(az storage container generate-sas --account-name $env:AZURE_STORAGE_ACCOUNT --name "pulumi" --permissions dlrw --as-user --expiry $((Get-date).AddDays(1) | % { "$($_.Year)-$($_.Month)-$($_.Day)" }) --auth-mode login).Trim('"')
+      $env:AZURE_KEYVAULT_AUTH_VIA_CLI = "true"
+      cd ${{ parameters.location }}
+      pulumi login --cloud-url ${{ parameters.pulumi_cloudUrl }}
+      pulumi stack select ${{ parameters.environment }}-${{ parameters.regionCode }} --create --secrets-provider ${{ parameters.pulumi_secretsProvider }}
+      pulumi config set environmentCode ${{ parameters.environment }}
+      pulumi config set regionCode ${{ parameters.regionCode }}
+      pulumi ${{ parameters.command }} #--logtostderr -v=7 2> out.txt
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: ${{ parameters.location }}/Pulumi.${{ parameters.environment }}-${{ parameters.regionCode }}.yaml
+    artifactName: drop.Pulumi.${{ parameters.environment }}-${{ parameters.regionCode }}.yaml

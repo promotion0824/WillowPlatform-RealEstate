@@ -1,0 +1,7 @@
+﻿variables:
+  serviceConnection:           az-sandbox-shared-WillowPlatform
+  subscription:                249312a0-4c83-4d73-b164-18c5e72bf219
+  code:                        sbx
+  pulumi_stateStorageAccount:  sbxdeploydata
+  pulumi_secretsProvider:      azurekeyvault://sandboxsharedkeys.vault.azure.net/keys/pulumi
+  pulumi_cloudUrl:             azblob://pulumi

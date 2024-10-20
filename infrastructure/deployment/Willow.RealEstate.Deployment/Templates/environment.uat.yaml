@@ -1,0 +1,7 @@
+﻿variables:
+  serviceConnection:           az-platform-uat-WillowPlatform
+  subscription:                f4edc7ff-4396-47be-bf14-90892e463848
+  code:                        uat
+  pulumi_stateStorageAccount:  platformuatdeploydata
+  pulumi_secretsProvider:      azurekeyvault://platformuatdeploykeys.vault.azure.net/keys/pulumi
+  pulumi_cloudUrl:             azblob://pulumi

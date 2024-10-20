@@ -1,0 +1,8 @@
+﻿variables:
+  serviceConnection:           az-platform-prd-WillowPlatform
+  subscription:                e878a98a-20ec-4516-a59d-f393429fe07c
+  code:                        prd
+  pulumi_stateStorageAccount:  platformprddeploydata
+  pulumi_secretsProvider:      azurekeyvault://platformprddeploykeys.vault.azure.net/keys/pulumi
+  pulumi_cloudUrl:             azblob://pulumi
+ 

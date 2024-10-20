@@ -1,0 +1,46 @@
+﻿trigger: none
+
+pool:
+  vmImage: ubuntu-latest
+
+parameters:
+- name: command
+  values:
+    - preview
+    - up -y
+  default: preview
+
+- name:  environmentName
+  default: dev
+  values:
+  - dev
+  - uat
+  - prd
+  - sbx
+
+- name: regions
+  type: object
+  default:
+  - code: aue1
+  - code: eu21
+
+stages:
+  - stage: 
+    variables:
+    - template: Templates/environment.${{ parameters.environmentName }}.yaml
+    displayName: ${{ variables.code }}
+    jobs:
+    - ${{ each region in parameters.regions }}:
+      - job:             ${{ region.code }}
+        displayName:     ${{ parameters.environmentName }}-${{ region.code }} 
+        continueOnError: false
+        steps:
+        - template:        pulumi-template.yaml
+          parameters:      
+            environment:   ${{ parameters.environmentName }}
+            regionCode:    ${{ region.code }}
+            command:       ${{ parameters.command}}
+            serviceConnection:           ${{ variables.serviceConnection }}
+            pulumi_stateStorageAccount:  ${{ variables.pulumi_stateStorageAccount }}
+            pulumi_secretsProvider:      ${{ variables.pulumi_secretsProvider }}
+            pulumi_cloudUrl:             ${{ variables.pulumi_cloudUrl }}

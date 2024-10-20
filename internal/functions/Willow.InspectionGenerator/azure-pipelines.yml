@@ -1,0 +1,181 @@
+trigger:
+  branches:
+    include:
+      - main
+      - releases/*
+  paths:
+    include:
+      - internal/functions/Willow.InspectionGenerator/*
+      - common/*
+
+pr:
+  branches:
+    include:
+      - main
+      - releases/*
+  paths:
+    include:
+      - internal/functions/Willow.InspectionGenerator/*
+      - common/*
+
+variables:
+  - group: 'WillowVariableGroup'
+  - name: buildConfiguration 
+    value: 'Release'
+  - name: targetFramework
+    value: 'dotNet6'
+  - name: appName
+    value: 'InspectionGenerator'
+  - name: nugetSourceUrl
+    value: 'https://pkgs.dev.azure.com/willowdev/WillowLib/_packaging/WillowLib/nuget/v3/index.json'
+  - name: nugetSourceName
+    value: 'WillowLib'
+  - name: devContainerRegistry
+    value: 'acr-crwildevshared01-Twin Platform-WillowPlatform'
+  - name: prdContainerRegistry
+    value: 'acr-crwilprdshared01-Twin Platform-WillowPlatform'
+  - name: imageName
+    value: 'willowplatform/inspectiongenerator'
+
+parameters:
+  - name: acr_push_prd
+    displayName: Push to ACR (PRD)
+    type: boolean
+    default: false
+  - name: acr_push_dev
+    displayName: Push to ACR (DEV)
+    type: boolean
+    default: false
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: WillowPlatform/PipelineTemplates
+
+jobs:
+  - job: build_publish
+    pool:
+      vmImage: 'windows-latest'
+    
+    steps:
+      ###### 1 ######
+      - checkout: self
+        path: s # default path
+      
+      ###### 2 ######
+      - checkout: templates
+        clean: true
+        fetchDepth: 1
+        submodules: false
+        persistCredentials: false
+      
+      ###### 3 ######
+      - task: UseDotNet@2
+        displayName: Use .NET 6.0
+        inputs:
+          packageType: 'sdk'
+          version: '6.0.x'
+      
+      ###### 4 ######
+      - task: DotNetCoreCLI@2
+        displayName: Restore NuGet packages
+        inputs:
+          command: restore
+          projects: '**/*.csproj'
+          feedsToUse: 'select'
+          vstsFeed: 'ab527366-4484-4cbd-8d43-482ca0abe038/e92c6645-e9e5-4f25-a3a7-acb25f701255'
+          noCache: true
+          includeNuGetOrg: true
+          verbosityRestore: '-'
+      
+      ###### 5 #####
+      - script: dotnet build --configuration $(buildConfiguration)
+        displayName: 'dotnet build $(buildConfiguration)'
+      
+      ###### 6 #####
+      - task: DotNetCoreCLI@2
+        displayName: 'Run Unit Tests'
+        inputs:
+          command: test
+          projects: '**/Willow.$(appName)/**/*UnitTests.csproj'
+          arguments: '--verbosity n --collect "Code coverage"'
+          testRunTitle: 'Run Platform test(s)'
+      
+      ###### 7 #####
+      - task: PublishTestResults@2
+        inputs:
+          testRunner: VSTest
+          testResultsFiles: '**/*.trx'
+      
+      ###### 8 #####
+      - task: PublishCodeCoverageResults@1
+        displayName: 'Publish code coverage'
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml'
+          reportDirectory: '$(Build.SourcesDirectory)/CodeCoverage'
+      
+      ###### 9 #####
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: publish
+          publishWebProjects: False
+          projects: '**/Willow.$(appName).Function/Willow.$(appName).Function.csproj'
+          arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+          zipAfterPublish: True
+      
+      ###### 10 #####
+      - task: PublishBuildArtifacts@1
+
+  - job: docker_push
+    condition: or(eq(${{ parameters.acr_push_prd }}, true), eq(${{ parameters.acr_push_dev }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - task: NuGetAuthenticate@1
+        displayName: 'Authenticate to NuGet'
+
+      - ${{ if parameters.acr_push_dev }}:
+          - task: Docker@2
+            displayName: Login to Dev ACR
+            inputs:
+              command: login
+              containerRegistry: $(devContainerRegistry)
+
+      - ${{ if parameters.acr_push_prd }}:
+          - task: Docker@2
+            displayName: Login to Prd ACR
+            inputs:
+              command: login
+              containerRegistry: $(prdContainerRegistry)
+
+      - task: Docker@2
+        displayName: 'Build image'
+        inputs:
+          command: 'build'
+          dockerfile: '**/Willow.$(appName)/Willow.$(appName).Function/Dockerfile.pipeline'
+          repository: $(imageName)
+          tags: $(Build.BuildId)
+          buildContext: '$(Build.SourcesDirectory)/'
+          arguments: |
+            --build-arg FEED_ACCESSTOKEN=$(VSS_NUGET_ACCESSTOKEN)
+            --build-arg FEED_URL=$(nugetSourceUrl)
+
+      - ${{ if parameters.acr_push_dev }}:
+          - task: Docker@2
+            displayName: 'Push image to Dev ACR'
+            inputs:
+              command: 'push'
+              containerRegistry: 'acr-crwildevshared01-Twin Platform-WillowPlatform'
+              repository: $(imageName)
+              tags: $(Build.BuildId)
+
+      - ${{ if parameters.acr_push_prd }}:
+          - task: Docker@2
+            displayName: 'Push image to Prd ACR'
+            inputs:
+              command: 'push'
+              containerRegistry: 'acr-crwilprdshared01-Twin Platform-WillowPlatform'
+              repository: $(imageName)
+              tags: $(Build.BuildId)

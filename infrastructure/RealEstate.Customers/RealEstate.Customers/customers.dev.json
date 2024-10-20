@@ -1,0 +1,18 @@
+[
+    {
+        "Name": "Microsoft",
+        "Code": "msft",
+        "Region": "eu21"
+    },
+    {
+        "Name": "Brookfield",
+        "Code": "brf",
+        "Region": "eu21"
+    },
+    {
+        "Name": "Investa",
+        "Code": "inv",
+        "Region": "aue1",
+        "ResourceGroupSuffix": "app-rgs"
+    }
+]

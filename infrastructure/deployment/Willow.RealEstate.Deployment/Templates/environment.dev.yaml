@@ -1,0 +1,7 @@
+﻿variables:
+  serviceConnection:           az-platform-dev-WillowPlatform
+  code:                        dev
+  subscription:                0be01d84-8432-4558-9aba-ecd204a3ee61
+  pulumi_stateStorageAccount:  platformdevdeploydata
+  pulumi_secretsProvider:      azurekeyvault://platformdevdeploykeys.vault.azure.net/keys/pulumi
+  pulumi_cloudUrl:             azblob://pulumi

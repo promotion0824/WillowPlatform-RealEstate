@@ -1,0 +1,6 @@
+name: RealEstate.Customers
+runtime:
+  name: dotnet
+  options:
+    binary: RealEstate.Customers.dll
+description: A minimal Azure Native C# Pulumi program

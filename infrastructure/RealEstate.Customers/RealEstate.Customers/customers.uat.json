@@ -1,0 +1,121 @@
+[
+  {
+    "Name": "Brookfield",
+    "Code": "brf",
+    "Region": "eu21",
+    "Adx": {
+      "Database": "Brookfield-UAT",
+      "PrincipalName": "92814fc2-83db-4bec-ae3b-46f22f58c01b"
+    }
+  },
+  {
+    "Name": "Dallas Fort Worth Airport",
+    "Code": "dfw",
+    "Region": "eu21",
+    "Adx": {
+      "Database": "DallasFortWorthAirport-UAT",
+      "PrincipalName": "e355fb4f-76c7-472e-8315-2ed7c681e1a4"
+    }
+  },
+  {
+    "Name": "Investa",
+    "Code": "inv",
+    "Region": "aue1",
+    "Adx": {
+      "Database": "Investa-UAT",
+      "PrincipalName": "5b791e6a-a221-48cc-a053-7abb9a00c25c",
+      "Identities": [
+        {
+          "PrincipalId": "e751e6f2-6df3-4334-9959-4b42e1c05cbe",
+          "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+          "Name": "inv-uat-adx-identity",
+          "Role": "Admin"
+        },
+        {
+            "PrincipalType": "User",
+            "PrincipalId": "3fffb1e0-f23e-44fc-ac66-321f065b3a54",
+            "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+            "Name": "iguigova-willowinc-com",
+            "Role": "Admin"
+        }
+      ]
+    },
+    "Adt": {
+      "Identities": [
+        {
+          "PrincipalId": "e751e6f2-6df3-4334-9959-4b42e1c05cbe",
+          "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+          "Name": "inv-uat-adt-identity",
+          "Role": "Owner"
+        }
+      ]
+    }
+  },
+  {
+    "Name": "Microsoft",
+    "Code": "msft",
+    "Region": "eu21",
+    "Adx": {
+      "Database": "Microsoft-UAT",
+      "PrincipalName": "483dd46c-1eae-4be5-b9fc-bb2fc79f8488",      
+      "Identities": [
+        {
+          "PrincipalId": "8a616a53-b71b-47ff-af62-9bbe9284ce48",
+          "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+          "Name": "msft-uat-adx-identity",
+          "Role": "Admin"
+        }
+      ]
+    },
+    "Adt": {
+      "Identities": [
+        {
+          "PrincipalId": "8a616a53-b71b-47ff-af62-9bbe9284ce48",
+          "TenantId": "d43166d1-c2a1-4f26-a213-f620dba13ab8",
+          "Name": "msft-aut-adt-identity",
+          "Role": "Owner"
+        }
+      ]
+    }
+  },
+  {
+    "Name": "Hollywood Park",
+    "Code": "sofi",
+    "Region": "eu21",
+    "Adx": {
+      "Database": "HollywoodPark-UAT"
+    }
+  },
+  {
+    "Name": "Rockwell Business Center Sheridan",
+    "Code": "RBCS",
+    "Region": "aue1",
+    "Adx": {
+      "Database": "AutomationCustomer-UAT"
+    }
+  },
+  {
+    "Name": "Willow USA",
+    "Code": "cu1",
+    "Region": "eu21",
+    "Adt": {
+      "ResourceGroup": "t3-wil-uat-lda-cu1-eu21-app-rsg"
+    }
+  },
+  {
+      "Name": "Walmart",
+      "Code": "wmt",
+      "Region": "eu21",
+      "Adx": {
+          "Database": "Walmart-UAT"
+      }
+  },
+  {
+      "Name": "Medxcel",
+      "Code": "mxl",
+      "Region": "eu21",
+      "Adx": {
+          "Database": "Medxcel-UAT"
+      }
+  }
+]

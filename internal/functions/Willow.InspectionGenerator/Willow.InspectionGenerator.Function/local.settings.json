@@ -1,0 +1,9 @@
+{
+    "IsEncrypted": false,
+    "Values": 
+    {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+        "ServiceBusConnectionString": "Endpoint=sb://wil-dev-plt-eu21-sbns.servicebus.windows.net/;SharedAccessKeyName=Listen;SharedAccessKey=F46x4FLrmmtKVBPECN1jDslAMY0TN66plNuj72E7xzQ=",
+    }
+}

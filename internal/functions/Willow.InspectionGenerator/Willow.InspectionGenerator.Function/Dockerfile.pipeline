@@ -1,0 +1,39 @@
+# The Docker.pipeline file is to build the image in Azure DevOps pipeline with Azure Artifacts Credential Provider to authenticate private feed safely
+# It's similar to the generated Dockerfile but with additional step adding Azure Artifacts Credential Provider
+# It can also be used locally if you have Azure Artifacts Credential Provider installed
+
+FROM mcr.microsoft.com/azure-functions/dotnet-isolated:4-dotnet-isolated6.0 AS base
+WORKDIR /home/site/wwwroot
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+
+# Install Azure Artifacts Credential Provider to authenticate private feed safely in pipline building
+RUN curl -L https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh  | sh
+
+COPY ["internal/functions/Willow.InspectionGenerator/Willow.InspectionGenerator.Function/Willow.InspectionGenerator.Function.csproj", "internal/functions/Willow.InspectionGenerator/Willow.InspectionGenerator.Function/"]
+COPY ["common/Models/Willow.Platform.Models.Customer/Willow.Platform.Models.Customer.csproj", "common/Models/Willow.Platform.Models.Customer/"]
+COPY ["common/Willow.Functions.Common/Willow.Functions.Common.csproj", "common/Willow.Functions.Common/"]
+COPY ["common/Willow.Platform.Common/Willow.Platform.Common.csproj", "common/Willow.Platform.Common/"]
+COPY ["common/Models/Willow.Platform.Models.User/Willow.Platform.Models.User.csproj", "common/Models/Willow.Platform.Models.User/"]
+COPY ["common/Willow.Http.DI/Willow.Http.DI.csproj", "common/Willow.Http.DI/"]
+COPY . .
+WORKDIR "/src/internal/functions/Willow.InspectionGenerator/Willow.InspectionGenerator.Function"
+
+# Setup private feed and credentials
+ARG FEED_ACCESSTOKEN
+ARG FEED_URL
+ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS="{\"endpointCredentials\": [{\"endpoint\":\"${FEED_URL}\", \"username\":\"docker\", \"password\":\"${FEED_ACCESSTOKEN}\"}]}"
+RUN dotnet restore --source ${FEED_URL} --source https://api.nuget.org/v3/index.json
+
+RUN dotnet build "Willow.InspectionGenerator.Function.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "Willow.InspectionGenerator.Function.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /home/site/wwwroot
+COPY --from=publish /app/publish .
+ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
+    AzureFunctionsJobHost__Logging__Console__IsEnabled=true

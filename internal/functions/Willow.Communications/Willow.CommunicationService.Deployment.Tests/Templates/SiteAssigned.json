@@ -1,0 +1,15 @@
+﻿{
+  "CorrelationId": "",
+  "CustomerId": "",
+  "UserId": "",
+  "UserType": "Customer",
+  "CommunicationType": "email",
+  "Locale": "",
+  "TemplateName": "SiteAssigned",
+  "Data": {
+    "SitesInTitle": "Willow Test",
+    "SitesLabel": "Willow Test Site",
+    "SitesInBody": "1 Infinite Loop",
+    "LoginUrl":  "https://no.where.com"
+  }
+}

@@ -1,0 +1,87 @@
+name: RealEstateCustomersCI
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - infrastructure/RealEstate.Customers/*
+
+variables:
+  pulumiProject: infrastructure/RealEstate.Customers/RealEstate.Customers.sln
+  workingDirectory: infrastructure/RealEstate.Customers
+  BuildConfiguration: Release
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: build_release
+    displayName: Build and Release
+    jobs:
+      - job: BuildAndRelease
+        pool:
+          vmImage: $(vmImage)
+        steps:
+        - task: DotNetCoreCLI@2
+          displayName: dotnet restore
+          inputs:
+            command: restore
+            projects: $(pulumiProject)
+            workingDirectory: $(workingDirectory)
+
+        - task: DotNetCoreCLI@2
+          displayName: dotnet build
+          inputs:
+            command: build
+            projects: $(pulumiProject)
+            arguments: --nologo -c $(BuildConfiguration)
+            workingDirectory: $(workingDirectory)
+
+        - task: DotNetCoreCLI@2
+          displayName: dotnet publish
+          inputs:
+            command: publish
+            arguments: --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+            zipAfterPublish: true
+            publishWebProjects: false
+            workingDirectory: $(workingDirectory)
+
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: $(Build.ArtifactStagingDirectory)
+            ArtifactName: pulumi
+
+  - stage: preview
+    displayName: Pulumi Preview
+    variables:
+      dropName: pulumi
+    jobs:
+      - job: Preview
+        pool:
+          vmImage: $(vmImage)
+        steps:
+        - template: downloadArtifact.yml
+          parameters:
+            dropName: $(dropName)
+
+        - template: configurePulumi.yml
+          parameters:
+            pulumiPlugin: 'azure-native'
+
+        - template: azure-pipelines-pulumi.yml
+          parameters:
+            azureSubscription: az-platform-dev-WillowPlatform
+            env: dev
+            dropName: $(dropName)
+
+        - template: azure-pipelines-pulumi.yml
+          parameters:
+            azureSubscription: az-platform-uat-WillowPlatform
+            env: uat
+            dropName: $(dropName)
+
+        - template: azure-pipelines-pulumi.yml
+          parameters:
+            azureSubscription: az-platform-prd-WillowPlatform
+            env: prd
+            dropName: $(dropName)
